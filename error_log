@@ -1,0 +1,3 @@
+[10-Apr-2021 18:26:39 UTC] PHP Fatal error:  Cannot redeclare Web_model::get_accounts() in /home/techcbr4/public_html/crm/application/models/Web_model.php on line 75
+[10-Apr-2021 18:27:32 UTC] PHP Fatal error:  Cannot redeclare Web_model::get_accounts() in /home/techcbr4/public_html/crm/application/models/Web_model.php on line 75
+[18-Apr-2021 05:31:21 UTC] PHP Fatal error:  Cannot redeclare Web_model::contact_add() in /home/techcbr4/public_html/crm/application/models/Web_model.php on line 184

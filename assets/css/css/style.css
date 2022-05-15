@@ -1,0 +1,261 @@
+/*------------- Css start 23-03-2022 --------------*/
+body{
+	margin:0;
+	padding:0;
+	width:100%;
+	background-color:#fff;
+	font-family: 'Rajdhani', sans-serif;
+	font-size:1.5rem;
+}
+ul{
+	margin:0px;
+	padding:0px;
+	border:none;
+	list-style:none;
+	font-family: 'Rajdhani', sans-serif;
+}
+img{
+	border:0;
+}
+p,a,label{
+	font-size:14px;
+	font-family: 'Rajdhani', sans-serif;
+}
+h1,h2,h3,h4,p,span{
+	margin:0;
+	font-family: 'Rajdhani', sans-serif;
+}
+a{
+	text-decoration:none;
+    font-family: 'Rajdhani', sans-serif;
+	cursor:pointer;
+}
+input{
+	outline:none;
+}
+*{
+	box-sizing:border-box;
+}
+.mnu{
+	font-size:1.5rem;
+	color:#2d3d93;
+	font-weight:500;
+	transition:1s;
+}
+.mnu:hover{
+	letter-spacing:1px;
+	transition:1s;
+	color:#000;
+}
+.logBtn{
+	background-color:#2d3d93;
+	border-radius:35px;
+	color:#fff;
+	padding: 4px 40px !important;
+    text-transform: uppercase;
+	font-weight:normal;
+	border:1px solid #2d3d93;
+	transition:1s;
+}
+.logBtn:hover{
+	color:#2d3d93;
+	background-color:#fff;
+	transition:1s;
+}
+.main-cont{
+	background:rgba(0,0,0,0)url(../../img/img/background.jpg) no-repeat scroll;
+	background-size:cover;
+	height:100vh;
+}
+.lft-txt{
+	color:#1179c7;
+	font-size:5rem;
+	font-weight:bold;
+	line-height:6rem;
+}
+.lft-txt-sub{
+	font-size:3rem;
+}
+.lft-txt-sml{
+	font-size:2rem;
+	color:#298fd1;
+	line-height:2.5rem;
+}
+.btn-lrnmore{
+	border: 2px solid #000;
+    border-radius: 35px;
+    text-align: center;
+    color: #000;
+    font-weight: 500;
+    font-family: 'Rajdhani', sans-serif;
+    font-size: 1.25rem;
+	transition:1s;
+}
+.btn-lrnmore:hover{
+	border-radius: 10px;
+	transition:1s;
+}
+.mt-6{
+	margin-top:6rem;
+}
+.cpyrgt,.resvd{
+	font-size:1.75rem;
+	color:#000;
+	font-weight:500;
+}
+.resvd{
+	color:#2d3d93;
+}
+.round{
+	border-radius:50%;
+}
+.mtop-190{
+	margin-top:-190px;
+}
+.social a img{
+	margin-top:0px;
+	transition:1s;
+}
+.social a img:hover{
+	margin-top:-5px;
+	transition:1s;
+}
+.drpdnMnu{
+	display:none;
+	width:45px;
+}
+.linehgt25{
+	line-height:25px;
+}
+.rounded-corner{
+	border-radius: 1rem 1rem 0 0 !important;
+}
+.top-clse{
+	opacity:1 !important;
+}
+.top-clse span{
+	border: 2px solid #fff;
+    border-radius: 50%;
+    padding: 5px 14px;
+    color: #fff;
+    opacity: 1;
+}
+@media only screen and (max-width: 1000px) {
+	.mnu {
+		font-size: 16px;
+	}
+	.nav.rspMnuall{
+		padding-top: 22px !important;
+	}
+	.lft-txt {
+		font-size: 55px;
+	}
+	.lft-txt-sml {
+		font-size: 22px;
+		color: #298fd1;
+		line-height: 30px;
+	}
+	.lft-txt-sub {
+		font-size: 28px;
+	}
+	.cpyrgt, .resvd {
+		font-size: 15px;
+	}
+	.social{
+		margin-top: 165px;
+	}
+	.btn-lrnmore{
+		padding: 10px 25px !important;
+		font-size: 15px;
+	}
+	.carousel{
+		margin-top:30px;
+	}
+}
+@media only screen and (max-width: 770px) {
+	.main-cont{
+		background-size: auto 100%;
+	}
+	.rspMnu{
+		width:auto !important;
+	}
+	.drpdnMnu{
+		display:block;
+		cursor:pointer;
+		z-index:99;
+		float:right;
+		margin-top: 15px;
+	}
+	.mnu-all{
+		position:relative;
+	}
+	.rspMnuall li
+	{
+		width: 100%;
+		background-color: #fefe;
+		border-bottom: 1px solid #00000045;
+	}
+	.rspMnuall li a{
+		font-size: 20px;
+		text-align: center;
+	}
+	.mnu-all li{
+		width: 100%;
+		text-align:center;
+	}
+	.mnu-all li a{
+		font-size: 20px;
+		border-radius: 0;
+	}
+	.nav.logBtnmn{
+		padding: 0 !important;
+		border-radius: 0px;
+	}
+	.nav.rspMnuall{
+		padding: 0 !important;
+		margin-top: 30px;
+	}
+	 .mnu-all-hidn-shw{
+		display:none;
+		width: 100%;		
+	} 
+	.text-cntnt,
+	.resp-txt-cntr{
+		text-align: center;
+	}
+	.lft-txt {
+		font-size: 5rem;
+	}
+	.lft-txt-sml {
+		font-size: 2rem;
+		line-height: 2.5rem;
+	}
+	.lft-txt-sub {
+		font-size: 3rem;
+	}
+	button.btn-lrnmore{
+		float:none;
+		padding-left: 50px !important;
+		padding-right: 50px !important;
+		font-size:22px;
+	}
+	.social{
+		text-align:center;
+		margin-top: 230px;
+	}
+	.social a{
+		display: inline-block;
+		width: auto;
+	}
+	.social a img{
+		display: inline-block;
+		width: auto;
+	}
+	.rspMtop{
+		margin-top:15px;
+	}
+	.cpyrgt, .resvd {
+		font-size: 20px;
+	}
+	
+}

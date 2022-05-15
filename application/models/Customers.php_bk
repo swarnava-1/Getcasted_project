@@ -1,0 +1,241 @@
+<?php
+defined('BASEPATH') OR exit('No direct script access allowed');
+
+class Customers extends CI_Controller {
+
+	public function __construct() {
+
+        parent::__construct();
+
+        $this->load->library('session');
+        $this->session;
+        $this->load->helper('url');
+        $this->load->helper('green_helper');
+
+        $this->load->model('web_model');
+        $this->load->model('user_model');
+
+		if($this->session->userdata('admin2') == null || $this->session->userdata('admin2') == '') {
+
+			redirect(base_url().'admin/login');
+		}
+    }
+
+	/**
+	 * Index Page for this controller.
+	 *
+	 * Maps to the following URL
+	 * 		http://example.com/index.php/welcome
+	 *	- or -
+	 * 		http://example.com/index.php/welcome/index
+	 *	- or -
+	 * Since this controller is set as the default controller in
+	 * config/routes.php, it's displayed at http://example.com/
+	 *
+	 * So any other public methods not prefixed with an underscore will
+	 * map to /index.php/welcome/<method_name>
+	 * @see https://codeigniter.com/user_guide/general/urls.html
+	 */
+
+public function index(){
+		$data['admin_user'] = $this->user_model->get_admin_by_id($this->session->userdata('admin2'));
+			
+			$this->load->view('admin/includes/header',$data);
+			$this->load->view('admin/includes/sidebar',$data);
+
+			$this->load->view('admin/includes/customers_list',$data);
+			//$this->load->view('admin/login');
+
+			$this->load->view('admin/includes/footer');
+}
+public function active_customer(){
+		$data['admin_user'] = $this->user_model->get_admin_by_id($this->session->userdata('admin2'));
+			
+			$this->load->view('admin/includes/header',$data);
+			$this->load->view('admin/includes/sidebar',$data);
+
+			$this->load->view('admin/includes/active_customers_list',$data);
+			//$this->load->view('admin/login');
+
+			$this->load->view('admin/includes/footer');
+}
+
+public function under_member(){
+	$data['admin_user'] = $this->user_model->get_admin_by_id($this->session->userdata('admin2'));
+			
+			$data['under_member'] = $this->user_model->under_member();	
+			$this->load->view('admin/includes/header',$data);
+			$this->load->view('admin/includes/sidebar',$data);
+			$this->load->view('admin/includes/under_member',$data);
+			$this->load->view('admin/includes/footer');
+}
+
+ 
+
+public function update_customer(){
+	$id	=	$_POST['id'];
+	
+	echo json_encode($this->user_model->update_customer($id));
+}
+
+public function upper_customer(){
+	$data['admin_user'] = $this->user_model->get_admin_by_id($this->session->userdata('admin2'));
+  //	print_r($this->user_model->upper_customer($data['admin_user'],$data['admin_user'][0]->sponsorId ,1));exit();
+	echo  json_encode( $this->user_model->upper_customer($data['admin_user'],$data['admin_user'][0]->sponsorId,1 ));
+}
+	/*public function index() {
+
+		//$data['numbers'] = $this->web_model->get_numbers();
+		//print_r($data['numbers']);die;
+		$this->load->view('admin/includes/header',$data);
+		$this->load->view('admin/includes/sidebar',$data);
+		$this->load->view('admin/user/user_list',$data);
+		$this->load->view('admin/includes/footer');
+	}
+
+	public function change_status() {
+
+		$id = $this->input->get('id');
+		$status = $this->input->get('status');
+
+		if($status == 0) {
+			$data_to_store = array(
+								    'status' => '1'
+			);
+		}
+		else if($status == 1) {
+			$data_to_store = array(
+								    'status' => '0'
+			);
+		}
+
+		$flag = $this->user_model->change_status_model($id, $data_to_store);
+
+		echo $flag;
+	}
+
+	public function change_sStatus() {
+
+		$id = $this->input->get('id');
+		$status = $this->input->get('status');
+
+		if($status == 0) {
+			$data_to_store = array(
+								    'sstatus' => '1'
+			);
+		}
+		else if($status == 1) {
+			$data_to_store = array(
+								    'sstatus' => '0'
+			);
+		}
+
+		$flag = $this->user_model->change_status_model($id, $data_to_store);
+
+		echo $flag;
+	}
+
+	public function delete_user() {
+
+		$id = $this->input->get('id');
+		$flag = $this->user_model->delete_user_by_id($id);
+		if($flag)
+			$this->session->set_userdata('message', 'deleted');
+		else 
+			$this->session->set_userdata('message', 'not_deleted');
+
+		//redirect('admin/user');
+	}
+
+	public function add_customers() {
+		
+		$id = $this->session->userdata('admin2');
+		$data['admin_user']=$this->user_model->get_admin_by_id($id);
+		$this->load->view('admin/includes/header',$data);
+		$this->load->view('admin/includes/sidebar',$data);
+		$this->load->view('admin/user/add_numbers',$data);
+		$this->load->view('admin/includes/footer');
+	}
+	public function shipping(){
+
+	    $data['shipping']=$this->user_model->shipping();
+	    $this->load->view('admin/includes/header',$data);
+		$this->load->view('admin/includes/sidebar',$data);
+		$this->load->view('admin/user/shipping',$data);
+		$this->load->view('admin/includes/footer');
+	}
+
+	public function insert_number() {
+		//print_r($_POST);exit;
+
+		$data_to_store = array(
+							    'Gateway' => $this->input->post('gateway'),
+							    'Center' => $this->input->post('center'),
+							    'created_date' => $this->input->post('cdate'),
+							    'end_date' => $this->input->post('edate'),
+							    'Name' => $this->input->post('name'),
+							    'phone' => $this->input->post('phone'),
+							    'gross' => $this->input->post('gross'),
+							    'price' => $this->input->post('price'),
+							    'shipping' => $this->input->post('shipping'),
+							    'payment' => $this->input->post('payment'),
+							    'status' => $this->input->post('status')
+							);
+
+		//print_r($data_to_store);
+
+		$flag = $this->web_model->number_add($data_to_store);
+
+		if($flag)
+			$this->session->set_userdata('message', 'inserted');
+		else 
+			$this->session->set_userdata('message', 'not_inserted');
+		//echo "<script>alert("+$flag+")</script>";
+
+		redirect('admin/customers');
+	}
+
+	public function edit_numbers() {
+		
+		$id = $this->input->get('id');
+		$data['number'] = $this->web_model->get_number_by_id($id);
+
+		$id = $this->session->userdata('admin');
+		$data['admin_user']=$this->user_model->get_admin_by_id($id);
+
+		$data['remail'] = $this->web_model->get_total_emails();
+		//$data['curemail'] = $this->web_model->get_email_by_id($id);
+
+		$this->load->view('admin/includes/header', $data);
+		$this->load->view('admin/includes/sidebar', $data);
+
+		$this->load->view('admin/user/edit_numbers', $data);
+
+		$this->load->view('admin/includes/footer');
+	}
+
+	public function update_number() {
+
+		$cid = $this->input->post('cid');
+		$data_to_store = array(
+							    'date' => $this->input->post('date'),
+							    'country' => $this->input->post('country'),
+							    'state' => $this->input->post('state'),
+							    'mobnumber' => $this->input->post('mobile'),
+							    'network' => $this->input->post('network'),
+							    'value' => $this->input->post('value')
+		);
+
+		$flag = $this->web_model->update_number($cid, $data_to_store);
+
+		if($flag)
+			$this->session->set_userdata('message', 'updated');
+		else 
+			$this->session->set_userdata('message', 'not_updated');
+		//echo "<script>alert("+$flag+")</script>";
+
+		redirect('admin/numbers');
+	}*/
+}
+
+?>
